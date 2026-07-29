@@ -1,216 +1,207 @@
-# 🚀 TechManager - Sistema de Gestão para Equipes de TI
+# TechManager
 
-> Um sistema web moderno e profissional para gestão de tickets, controle de ponto, folha de pagamento e equipes. Desenvolvido com PHP, MySQL e design UI/UX contemporâneo.
+Sistema de gestão para equipes de TI com controle de ponto, tickets, folha de pagamento e administração de funcionários.
 
-![Status](https://img.shields.io/badge/Status-Ativo-brightgreen)
-![PHP](https://img.shields.io/badge/PHP-8.0+-blue)
-![MySQL](https://img.shields.io/badge/MySQL-8.0+-blue)
-![License](https://img.shields.io/badge/License-MIT-green)
+## Sobre o projeto
 
-## ✨ Funcionalidades
+Desenvolvi este sistema para praticar os conceitos aprendidos no curso Técnico em Desenvolvimento de Sistemas do SENAI. O objetivo foi criar uma aplicação que resolvesse problemas reais de gestão de uma equipe de TI, como controle de jornada, organização de chamados e administração de pessoal.
 
-### 👨‍💼 Para Administradores
-- 📊 Dashboard executivo com KPIs e estatísticas
-- 👥 Gestão de funcionários (CRUD)
-- ⏰ Controle centralizado de ponto
-- 💰 Folha de pagamento e horas extras
-- 🎫 Sistema de tickets Kanban
-- 🔍 Auditoria completa do sistema
+O projeto surgiu da necessidade de centralizar informações que normalmente ficam espalhadas em planilhas e e-mails, facilitando o dia a dia de administradores, supervisores e funcionários.
 
-### 👔 Para Supervisores
-- 📋 Dashboard de supervisão da equipe
-- 🎫 Gestão de tickets do setor
-- ⏰ Visibilidade de ponto dos subordinados
-- 📊 Relatórios de performance
+## Funcionalidades
 
-### 👨‍💻 Para Funcionários
-- 📱 Meu painel pessoal
-- ⏰ Registro de ponto
-- 🎫 Meus tickets e SLA
-- 💵 Extrato de pagamentos
+### Autenticação e acesso
+- Login com e-mail e senha
+- Três níveis de acesso: admin, supervisor e funcionário
+- Redirecionamento automático para dashboard específico de cada perfil
+- Logout seguro
 
-## 🛠️ Stack Tecnológico
+### Dashboard administrativo
+- Visualização de estatísticas gerais (total de funcionários, ativos, tickets pendentes)
+- Gráfico de presença semanal com Chart.js
+- Gráfico de tickets por status
+- Acesso a todas as áreas de gestão
 
-- **Backend:** PHP 8.0+ com PDO
-- **Banco de Dados:** MySQL 8.0+
-- **Frontend:** HTML5, CSS3, Vanilla JS
-- **UI:** Design System com Dark Mode
-- **Icons:** Font Awesome 6.5
-- **Charts:** Chart.js
+### Gestão de funcionários (admin)
+- Listagem de funcionários com busca por nome ou e-mail
+- Cadastro de novos funcionários
+- Edição de dados (nome, e-mail, cargo, setor, salário, status, perfil)
+- Exclusão de funcionários
+- Modal para criação de novos registros
 
-## 📋 Pré-requisitos
+### Controle de ponto
+- Registro de entrada, pausa, retorno e saída
+- Cálculo automático de horas trabalhadas e extras
+- Identificação de atrasos (entrada após 09:15)
+- Calendário mensal visual com status de cada dia
+- Filtro por mês no calendário
+- Visão administrativa dos registros por data
 
-- PHP 8.0 ou superior
-- MySQL 8.0 ou superior
-- Servidor Apache (com mod_rewrite)
-- Composer (opcional)
+### Sistema de tickets
+- Quadro Kanban com colunas: aberto, andamento, revisão, finalizado
+- Criação de tickets com título, descrição, prioridade e setor
+- Arrastar e soltar para mudar status
+- Atribuição de responsável
+- Comentários nos tickets
+- Visualização dos tickets atribuídos a cada funcionário
+- Indicador de SLA (dias desde abertura)
 
-## 🚀 Instalação Rápida
+### Folha de pagamento (admin)
+- Geração de folha por mês/ano
+- Cálculo de horas extras com adicional de 50%
+- Benefícios fixos (VA + VR)
+- Descontos por falta
+- Visualização de salário base, extras, descontos, benefícios e total
+- Status de pagamento (pendente/pago)
 
-### 1. Clone o repositório
-```bash
-git clone https://github.com/seu-usuario/techmanager.git
-cd techmanager
-```
+### Dashboard supervisor
+- Visão da equipe do setor
+- Contagem de tickets do setor
+- Atrasos e extras do dia
+- Lista de funcionários com status e ponto do dia
+- Distribuição de prioridades dos tickets
 
-### 2. Configure o banco de dados
-```bash
-mysql -u root -p < sql/database.sql
-```
+### Perfil do funcionário
+- Visualização de dados cadastrais
+- Atualização de nome, e-mail, cargo e setor
+- Alteração de senha com confirmação
+- Histórico de notificações
 
-### 3. Configure as variáveis de ambiente
-```bash
-cp config/.env.example config/.env
-```
+### Auditoria (admin)
+- Log de todas as ações do sistema
+- Registro de usuário, ação, detalhes, IP e data
+- Visualização dos 100 registros mais recentes
 
-Edite `config/.env` com suas credenciais:
-```env
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_NAME=gestao_ti
-DB_USER=root
-DB_PASS=
-```
+### Notificações
+- Sistema de notificações para usuários
+- Atualização em tempo real via AJAX
+- Marcação como lida
 
-### 4. Acesse a aplicação
-```
-http://localhost/gestao_ti/
-```
+## Tecnologias utilizadas
 
-### 5. Reset de credenciais (desenvolvimento)
-```
-http://localhost/gestao_ti/reset.php
-```
+- **Linguagem**: PHP
+- **Banco de dados**: MySQL
+- **Conexão**: PDO (PHP Data Objects)
+- **Frontend**: HTML5, CSS3, JavaScript
+- **Ícones**: Font Awesome 6.5
+- **Gráficos**: Chart.js
+- **Segurança**: password_hash, prepared statements
 
-## 👤 Credenciais Padrão
+## Estrutura do projeto
 
-| Papel | Email | Senha | Acesso |
-|-------|-------|-------|--------|
-| Admin | admin@gmail.com | adm123 | Gerenciamento total |
-| Supervisor | supervisor@gmail.com | supervisor123 | Supervisão de setor |
-| Funcionário | usuario@example.com | senha123 | Seu painel |
+- **config/**: Arquivos de configuração
+  - db.php: Conexão com o banco de dados
+  - .env.example: Exemplo de variáveis de ambiente
 
-## 📁 Estrutura do Projeto
+- **includes/**: Arquivos de funções e classes reutilizáveis
+  - functions.php: Funções principais (autenticação, redirecionamento, logs)
+  - helpers.php: Funções auxiliares (formatação de dados)
+  - csrf.php: Classe para proteção CSRF
+  - validator.php: Classe para validação de inputs
 
-```
-techmanager/
-├── app/
-│   ├── controllers/       # Controllers (lógica de negócio)
-│   ├── models/            # Models (acesso a dados)
-│   └── middleware/        # Middleware (auth, validation)
-├── resources/
-│   ├── views/             # Views (apresentação)
-│   ├── partials/          # Componentes reutilizáveis
-│   └── css/               # Estilos
-├── config/
-│   ├── db.php             # Conexão banco
-│   └── .env               # Variáveis ambiente
-├── sql/
-│   └── database.sql       # Schema do banco
-├── public/
-│   ├── index.php          # Ponto de entrada
-│   ├── assets/            # Arquivos estáticos
-│   └── ajax/              # Endpoints AJAX
-└── README.md              # Este arquivo
-```
+- **modules/**: Lógica de processamento de formulários
+  - funcionarios.php: CRUD de funcionários e perfil
+  - ponto.php: Registro de ponto
+  - tickets.php: Criação e atualização de tickets
+  - pagamentos.php: Geração de folha de pagamento
 
-## 🔐 Segurança
+- **resources/views/partials/**: Componentes de interface
+  - header.php: Cabeçalho das páginas
+  - sidebar.php: Menu lateral
+  - stat_card.php: Card de estatísticas
 
-- ✅ Password hashing com bcrypt
-- ✅ Prepared statements contra SQL Injection
-- ✅ CSRF tokens em formulários
-- ✅ Validação e sanitização de entrada
-- ✅ Logs de auditoria de todas as ações
-- ✅ Controle de permissões (RBAC)
-- ✅ Proteção contra XSS
+- **assets/css/**: Estilos
+  - style.css: Folha de estilos principal
 
-## 📊 Endpoints Principais
+- **ajax/**: Endpoints assíncronos
+  - updates.php: Atualização de notificações
 
-### Dashboard
-- `GET /` → Login
-- `GET /admin_dashboard.php` → Dashboard Admin
-- `GET /supervisor_dashboard.php` → Dashboard Supervisor
-- `GET /funcionario_dashboard.php` → Dashboard Funcionário
+- **sql/**: Banco de dados
+  - database.sql: Script de criação das tabelas
+  - fix_admin.php: Script auxiliar para admin
 
-### Funcionários
-- `GET /admin_funcionarios.php` → Listar
-- `POST /modules/funcionarios.php?action=create` → Criar
-- `POST /modules/funcionarios.php?action=update` → Atualizar
+- **Páginas principais**: index.php (login), dashboards (admin, supervisor, funcionário), páginas de gestão (funcionários, ponto, tickets, pagamentos, auditoria, perfil)
 
-### Tickets
-- `GET /tickets.php` → Kanban
-- `GET /meus_tickets.php` → Meus tickets
+## Como executar o projeto
 
-### Ponto
-- `GET /admin_ponto.php` → Controle admin
-- `GET /meu_ponto.php` → Meu ponto
+### Requisitos
+- Servidor web (Apache)
+- PHP
+- MySQL
+- Navegador web
 
-### Pagamentos
-- `GET /admin_pagamentos.php` → Folha admin
-- `GET /meus_pagamentos.php` → Meus pagamentos
+### Instalação
 
-## 🗄️ Banco de Dados
+1. Coloque os arquivos na pasta do servidor (htdocs no XAMPP)
 
-### Tabelas Principais
-- `funcionarios` - Dados de usuários
-- `ponto` - Registros de presença
-- `pagamento` - Folha de pagamento
-- `servicos` - Tickets/Chamados
-- `tickets_comentarios` - Comentários
-- `logs_sistema` - Auditoria
-- `notificacoes` - Notificações
+2. Crie o banco de dados importando o arquivo:
+   - Acesse o phpMyAdmin
+   - Crie um banco chamado gestao_ti
+   - Importe o arquivo sql/database.sql
 
-## 🎨 Design System
+3. Configure a conexão em config/db.php se necessário:
+   - Host: 127.0.0.1
+   - Banco: gestao_ti
+   - Usuário: root
+   - Senha: (em branco no XAMPP padrão)
 
-### Cores
-- **Primary:** #22c55e (Verde)
-- **Secondary:** #0e7490 (Azul Petróleo)
-- **Background:** #01040d (Azul Escuro)
-- **Text:** #f8fafc (Branco)
+4. Acesse o sistema:
+   - http://localhost/gestao_ti/
 
-### Componentes
-- Cards com border e backdrop-filter
-- Grid layout responsivo
-- Dark mode nativo
-- Paleta consistente
+5. Para resetar as credenciais padrão:
+   - http://localhost/gestao_ti/reset.php
 
-## 🚀 Melhorias Planejadas
+### Credenciais de acesso
 
-- [ ] API REST completa
-- [ ] Exportação PDF/Excel
-- [ ] Webhooks para integrações
-- [ ] Two-factor authentication
-- [ ] Dashboard em tempo real com WebSockets
-- [ ] Mobile app nativa
-- [ ] Plugin system
+- **Admin**: admin@gmail.com / adm123
+- **Supervisor**: supervisor@gmail.com / supervisor123
 
-## 📈 Performance
+## Banco de dados
 
-- Queries otimizadas com índices
-- Lazy loading em tabelas
-- Paginação implementada
-- Cache de sessão
+O sistema utiliza MySQL com as seguintes tabelas:
 
-## 🤝 Contribuindo
+- **funcionarios**: Dados dos usuários (nome, e-mail, senha, cargo, setor, salário, status, perfil)
+- **ponto**: Registros de ponto (funcionário, data, entrada, saída pausa, retorno pausa, saída, horas trabalhadas, extras, status)
+- **pagamento**: Folha de pagamento (funcionário, mês, ano, salário base, extras, descontos, benefícios, total, status)
+- **servicos**: Tickets de suporte (título, descrição, status, prioridade, funcionário responsável, setor)
+- **tickets_comentarios**: Comentários nos tickets
+- **logs_sistema**: Registro de auditoria (funcionário, ação, detalhes, IP, data)
+- **notificacoes**: Notificações para usuários (funcionário, mensagem, lida, data)
 
-1. Fork o repositório
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+O arquivo sql/database.sql contém o script completo de criação das tabelas com suas relações (foreign keys).
 
-## 📄 Licença
+## Conceitos aplicados
 
-Este projeto é licenciado sob a MIT License - veja o arquivo [LICENSE](LICENSE) para detalhes.
+- Programação orientada a objetos (classes CSRFToken e InputValidator)
+- Autenticação de usuários com sessões
+- Controle de acesso baseado em roles (RBAC)
+- Operações CRUD com banco de dados
+- Validação e sanitização de inputs
+- Proteção contra SQL Injection com prepared statements
+- Hash de senhas com bcrypt
+- AJAX para atualizações assíncronas
+- Manipulação de datas e horas
+- Cálculos matemáticos (horas extras, folha de pagamento)
+- Organização de código em módulos
+- Reutilização de componentes (partials)
+- Design responsivo com CSS Grid e Flexbox
 
-## 👨‍💻 Autor
+## Aprendizados
 
-Desenvolvido como um projeto moderno de gestão de equipes, com foco em usabilidade, segurança e performance.
+Durante o desenvolvimento deste projeto, pratiquei:
 
-## 📞 Suporte
+- Integração entre PHP e MySQL usando PDO
+- Criação de sistemas de login com diferentes níveis de permissão
+- Organização de código em arquivos separados por responsabilidade
+- Implementação de boas práticas de segurança (hash de senhas, validação)
+- Desenvolvimento de interface com HTML, CSS e JavaScript
+- Uso de bibliotecas externas (Chart.js, Font Awesome)
+- Resolução de problemas de lógica de negócio (cálculo de horas, geração de folha)
+- Criação de layouts responsivos
+- Manipulação de formulários e processamento de dados
 
-Para reportar bugs ou sugerir features, abra uma issue no repositório.
+## Autor
 
----
+Julia Aparecida
 
-**Desenvolvido com ❤️ em 2024**
+Técnico em Desenvolvimento de Sistemas - SENAI
